@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Courgette-JVM Report</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link href="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/css/core.min.css" rel="stylesheet">
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <li class="navbar-brand" href="#">Courgette-JVM Report</li>
+</nav>
+
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+        <!-- Result Cards -->
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="card text-white bg-primary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw"></i>
+                        </div>
+                        <div class="mr-10">
+                            Total Scenarios
+                        </div>
+                    </div>
+                    <div class="card-footer text-white clearfix small z-1" style="cursor: pointer;"
+                         onclick="setSearch('');">
+                        <span class="float-left text-white" id="card-total">1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="card text-white bg-success o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw"></i>
+                        </div>
+                        <div class="mr-10">
+                            Passed Scenarios
+                        </div>
+                    </div>
+                    <div class="card-footer text-white clearfix small z-1" style="cursor: pointer;"
+                         onclick="setSearch('Passed');">
+                        <span class="float-left text-white" id="card-passed">1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="card text-white bg-danger o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw"></i>
+                        </div>
+                        <div class="mr-10">
+                            Failed Scenarios
+                        </div>
+                    </div>
+                    <div class="card-footer text-white clearfix small z-1" style="cursor: pointer;"
+                         onclick="setSearch('Failed');">
+                        <span class="float-left text-white" id="card-failed">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-3">
+                <div class="card text-white bg-warning o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa fa-fw"></i>
+                        </div>
+                        <div class="mr-10">
+                            Re-run Scenarios
+                        </div>
+                    </div>
+                    <div class="card-footer text-white clearfix small z-1" style="cursor: pointer;"
+                    onclick="setSearch('Rerun');">
+                        <span class="float-left" id="card-rerun">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa"></i>Run Information
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                Timestamp:
+                            </div>
+                            <div>2020-04-30T13:18:01.961Z</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Duration:
+                            </div>
+                            <div>0 min, 20 sec</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Parallel Threads:
+                            </div>
+                            <div>10</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Parallel Run Level:
+                            </div>
+                            <div>Scenario</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Rerun Failed:
+                            </div>
+                            <div>true</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Cucumber Tags:
+                            </div>
+                            <div>@Used-Search-Cars, not @wip</div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-sm-3">
+                                Cucumber Features:
+                            </div>
+                            <div>src/test/resources/Features</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="mt-3 mb-3">
+                        <canvas id="pieChart" width="100%" height="321"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Table -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i>
+                Results
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th width="95%">Scenario Name</th>
+                            <th>Result</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#8fb5496b-cb43-4213-9006-86dabeca9241">Validate search cars page</a>
+                                    </td>
+                                    <td>
+                                        <span class="float-left badge badge-success">Passed</span>
+                                    </td>
+                                </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+    <!-- Modals -->
+    <div class="modal fade" id="8fb5496b-cb43-4213-9006-86dabeca9241" tabindex="-1" role="dialog" aria-labelledby="8fb5496b-cb43-4213-9006-86dabeca9241" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header text-white bg-dark">
+<span class="modal-title"><h5>Validate search cars page</h5>
+<div class="font-italic text-muted">UsedCarSearch.feature - line 19</div></span>
+<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+com.w2a.CucucmberPageObjectModel.steps.BeforeActions.setUp()
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">5826 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Given I am on the Hompe Page "https://www.carsguide.com.au/" of cars guide website to test used search cars
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">2612 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+When I move to menu to select used cars
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">314 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<div class="row mt-2">
+<div class="col-lg-12 text-muted" style="overflow-wrap:break-word;">
+| Menu | 
+</div>
+</div><div class="row mt-2">
+<div class="col-lg-12 text-muted" style="overflow-wrap:break-word;">
+| buy+sell | 
+</div>
+</div><div class="row mt-2">
+<div class="col-lg-12 text-muted" style="overflow-wrap:break-word;">
+| reviews | 
+</div>
+</div><div class="row mt-2">
+<div class="col-lg-12 text-muted" style="overflow-wrap:break-word;">
+| news | 
+</div>
+</div><div class="row mt-2">
+<div class="col-lg-12 text-muted" style="overflow-wrap:break-word;">
+| advice | 
+</div>
+</div><div class="row mt-2">
+<div class="col-lg-12 text-muted" style="overflow-wrap:break-word;">
+| pricing+specs | 
+</div>
+</div><div class="row mt-2">
+<div class="col-lg-12 text-muted" style="overflow-wrap:break-word;">
+| guides | 
+</div>
+</div><hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+And I click on "Used Car" link on buy and sell menu
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">2939 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+And I select  "Audi" as brand
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">1652 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+And I select  "A4" as model
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">299 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+And I select  "ACT - All" as location
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">187 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+And I select  "$100,000" as price
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">129 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+And I click on "Find My Next Car" Button on used search cars
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">358 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+Then I should see list of searched cars on used search car
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">1 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+And The page title should be "Used Audi A4 Under 100000 for Sale ACT | carsguide" of used searched car
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">87 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-lg-9" style="overflow-wrap:break-word;">
+com.w2a.CucucmberPageObjectModel.steps.AfterActions.tearDown(io.cucumber.java.Scenario)
+</div>
+<div class="col-lg-3">
+<span class="float-right">
+<span class="badge badge-info">4679 ms</span>
+<span class="badge badge-success">Passed</span>
+</span>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<!-- /.content-wrapper -->
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/jquery.easing.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/jquery.dataTables.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/dataTables.bootstrap4.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/mdb.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/prashant-ramcharan/courgette-jvm/src/main/resources/report/js/Chart.min.js"></script>
+
+<script>
+    var passed = $('#card-passed').text();
+    var failed = $('#card-failed').text();
+    var rerun = $('#card-rerun').text();
+
+    var ctxP = document.getElementById("pieChart").getContext('2d');
+    var pieChart = new Chart(ctxP, {
+        type: 'pie',
+        data: {
+            labels: ["Passed", "Failed", "Re-run"],
+            datasets: [{
+                data: [passed, failed, rerun],
+                backgroundColor: ["#28a745", "#dc3545", "#ffbb33"]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
+
+<script>
+    function setSearch(criteria) {
+        var search = "\"" + criteria + "\"";
+        if (criteria.length < 2) {
+            search = ''
+        }
+        $("input[type='search']").val(search).trigger($.Event("keyup", {keyCode: 13}));
+    }
+</script>
+
+</body>
+
+</html>

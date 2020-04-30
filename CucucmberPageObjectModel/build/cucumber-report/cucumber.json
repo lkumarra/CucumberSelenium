@@ -1,0 +1,213 @@
+[ {
+  "line" : 2,
+  "elements" : [ {
+    "line" : 7,
+    "name" : "",
+    "description" : "",
+    "type" : "background",
+    "keyword" : "Background",
+    "steps" : [ {
+      "result" : {
+        "duration" : 2612000000,
+        "status" : "passed"
+      },
+      "line" : 8,
+      "name" : "I am on the Hompe Page \"https://www.carsguide.com.au/\" of cars guide website to test used search cars",
+      "match" : {
+        "arguments" : [ {
+          "val" : "\"https://www.carsguide.com.au/\"",
+          "offset" : 23
+        } ],
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.i_am_on_the_Hompe_Page_of_cars_guide_website_to_test_used_search_cars(java.lang.String)"
+      },
+      "keyword" : "Given "
+    }, {
+      "result" : {
+        "duration" : 314000000,
+        "status" : "passed"
+      },
+      "line" : 9,
+      "name" : "I move to menu to select used cars",
+      "match" : {
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.i_move_to_menu_to_select_used_cars(java.util.List<java.lang.String>)"
+      },
+      "rows" : [ {
+        "cells" : [ "Menu" ]
+      }, {
+        "cells" : [ "buy+sell" ]
+      }, {
+        "cells" : [ "reviews" ]
+      }, {
+        "cells" : [ "news" ]
+      }, {
+        "cells" : [ "advice" ]
+      }, {
+        "cells" : [ "pricing+specs" ]
+      }, {
+        "cells" : [ "guides" ]
+      } ],
+      "keyword" : "When "
+    } ]
+  }, {
+    "start_timestamp" : "2020-04-30T13:17:42.494Z",
+    "before" : [ {
+      "result" : {
+        "duration" : 5826000000,
+        "status" : "passed"
+      },
+      "match" : {
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.BeforeActions.setUp()"
+      }
+    } ],
+    "line" : 19,
+    "name" : "Validate search cars page",
+    "description" : "",
+    "id" : "acceptance-testing-to-validate-used-cars-page-is-working-fine;validate-search-cars-page",
+    "after" : [ {
+      "result" : {
+        "duration" : 4679000000,
+        "status" : "passed"
+      },
+      "match" : {
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.AfterActions.tearDown(io.cucumber.java.Scenario)"
+      }
+    } ],
+    "type" : "scenario",
+    "keyword" : "Scenario",
+    "steps" : [ {
+      "result" : {
+        "duration" : 2939000000,
+        "status" : "passed"
+      },
+      "line" : 20,
+      "name" : "I click on \"Used Car\" link on buy and sell menu",
+      "match" : {
+        "arguments" : [ {
+          "val" : "\"Used Car\"",
+          "offset" : 11
+        } ],
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.i_click_on_link_on_buy_and_sell_menu(java.lang.String)"
+      },
+      "keyword" : "And "
+    }, {
+      "result" : {
+        "duration" : 1652000000,
+        "status" : "passed"
+      },
+      "line" : 21,
+      "name" : "I select  \"Audi\" as brand",
+      "match" : {
+        "arguments" : [ {
+          "val" : "\"Audi\"",
+          "offset" : 10
+        } ],
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.i_select_as_brand(java.lang.String)"
+      },
+      "keyword" : "And "
+    }, {
+      "result" : {
+        "duration" : 299000000,
+        "status" : "passed"
+      },
+      "line" : 22,
+      "name" : "I select  \"A4\" as model",
+      "match" : {
+        "arguments" : [ {
+          "val" : "\"A4\"",
+          "offset" : 10
+        } ],
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.i_select_as_model(java.lang.String)"
+      },
+      "keyword" : "And "
+    }, {
+      "result" : {
+        "duration" : 187000000,
+        "status" : "passed"
+      },
+      "line" : 23,
+      "name" : "I select  \"ACT - All\" as location",
+      "match" : {
+        "arguments" : [ {
+          "val" : "\"ACT - All\"",
+          "offset" : 10
+        } ],
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.i_select_as_location(java.lang.String)"
+      },
+      "keyword" : "And "
+    }, {
+      "result" : {
+        "duration" : 129000000,
+        "status" : "passed"
+      },
+      "line" : 24,
+      "name" : "I select  \"$100,000\" as price",
+      "match" : {
+        "arguments" : [ {
+          "val" : "\"$100,000\"",
+          "offset" : 10
+        } ],
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.i_select_as_price(java.lang.String)"
+      },
+      "keyword" : "And "
+    }, {
+      "result" : {
+        "duration" : 358000000,
+        "status" : "passed"
+      },
+      "line" : 25,
+      "name" : "I click on \"Find My Next Car\" Button on used search cars",
+      "match" : {
+        "arguments" : [ {
+          "val" : "\"Find My Next Car\"",
+          "offset" : 11
+        } ],
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.i_click_on_Button_on_used_search_cars(java.lang.String)"
+      },
+      "keyword" : "And "
+    }, {
+      "result" : {
+        "duration" : 1000000,
+        "status" : "passed"
+      },
+      "line" : 26,
+      "name" : "I should see list of searched cars on used search car",
+      "match" : {
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.i_should_see_list_of_searched_cars_on_used_search_car()"
+      },
+      "keyword" : "Then "
+    }, {
+      "result" : {
+        "duration" : 87000000,
+        "status" : "passed"
+      },
+      "line" : 27,
+      "name" : "The page title should be \"Used Audi A4 Under 100000 for Sale ACT | carsguide\" of used searched car",
+      "match" : {
+        "arguments" : [ {
+          "val" : "\"Used Audi A4 Under 100000 for Sale ACT | carsguide\"",
+          "offset" : 25
+        } ],
+        "location" : "com.w2a.CucucmberPageObjectModel.steps.UsedCarsSteps.the_page_title_should_be_of_used_searched_car(java.lang.String)"
+      },
+      "keyword" : "And "
+    } ],
+    "tags" : [ {
+      "name" : "@Used-Search-Cars"
+    }, {
+      "name" : "@Used-Search-Cars-Positive"
+    } ]
+  } ],
+  "name" : "Acceptance testing to validate used cars page is working fine",
+  "description" : "  In order to validate that \n  the used cars page is working fine\n  we will do the acceptance testing",
+  "id" : "acceptance-testing-to-validate-used-cars-page-is-working-fine",
+  "keyword" : "Feature",
+  "uri" : "file:src/test/resources/Features/UsedCarSearch.feature",
+  "tags" : [ {
+    "name" : "@Used-Search-Cars",
+    "type" : "Tag",
+    "location" : {
+      "line" : 1,
+      "column" : 1
+    }
+  } ]
+} ]
